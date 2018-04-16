@@ -1,0 +1,221 @@
+<div layout-fill>
+    <md-dialog style="max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;" aria-label="REGISTRACIJA">
+        <form ng-cloak>
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h2>Upitnik 2</h2>
+                </div>
+            </md-toolbar>
+
+            <md-dialog-content>
+
+                <md-card>
+                    <md-card-content>
+                        <div layout-gt-sm="row">
+
+                            <div layout-gt-sm="row" layout-fill style="width: 70%;
+    height: 100%;">
+                                <md-tabs flex="100%" md-dynamic-height md-border-bottom md-selected="myTabIndex">
+                                    <md-tab label="Kako čujete srpski?" md-active='tab[0]' ng-disabled='!tabs[0]'>
+                                        <md-content class="md-padding">
+                                            <h2>Kako čujete srpski?</h2>
+                                            <md-divider></md-divider>
+
+                                            <md-radio-group ng-model="izabranoSlusanje" ng-change="changeValueUpitnik2(1, izabranoSlusanje)">
+                                                <div ng-repeat='slusanje in kakoCujeteSrpski' class="row">
+                                                    <div flex layout='row' layout-padding layout-align="start center">
+                                                        <md-radio-button flex ng-value="slusanje" class="md-primary">
+
+                                                            {{slusanje.odgovor}}
+
+                                                        </md-radio-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-radio-group>
+
+                                            <md-divider></md-divider>
+                                            <div class="summary" flex layout="row" layout-align="space-between center">
+                                                <div flex-initial>
+                                                    <span class="title">Broj bodova</span>: <span class="md-checked">{{poznavanjeJezika.zbirBodova}}</span>
+                                                </div>
+
+                                            </div>
+                                            <md-dialog-actions layout="row">
+                                                <md-button ng-click="submitRegistrationUpitnik3($event,'back', '/register/upitnik2.html')" type='submit' class="md-warn">
+                                                    Nazad
+                                                </md-button>
+                                                <md-button ng-click="nextTab(1)" type='submit' class="md-primary">
+                                                    Dalje
+                                                </md-button>
+                                            </md-dialog-actions>
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label="Kako čitate na srpskom?" md-active='tabs[1]' ng-disabled='!tabs[1]'>
+                                        <md-content class="md-padding">
+                                            <h2>Kako čitate na srpskom?</h2>
+                                            <md-divider></md-divider>
+
+                                            <md-radio-group ng-model="izabranoCitanje" ng-change="changeValueUpitnik2(2, izabranoCitanje)">
+                                                <div ng-repeat='citanje in kakoCitateSrpski' class="row">
+                                                    <div flex layout='row' layout-padding layout-align="start center">
+                                                        <md-radio-button flex ng-value="citanje" class="md-primary">
+
+                                                            {{citanje.odgovor}}
+
+                                                        </md-radio-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-radio-group>
+
+                                            <md-divider></md-divider>
+                                            <div class="summary" flex layout="row" layout-align="space-between center">
+                                                <div flex-initial>
+                                                    <span class="title">Broj bodova</span>: <span class="md-checked">{{poznavanjeJezika.zbirBodova}}</span>
+                                                </div>
+
+                                            </div>
+                                            <md-dialog-actions layout="row">
+                                                <md-button ng-click="backTab(2)" class="md-warn">
+                                                    Nazad
+                                                </md-button>
+                                                <md-button ng-click="nextTab(2)" type='submit' class="md-primary">
+                                                    Dalje
+                                                </md-button>
+                                            </md-dialog-actions>
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label="Kako komunicirate sa drugima na srpskom?" md-active='tabs[2]' ng-disabled='!tabs[2]'>
+                                        <md-content class="md-padding">
+                                            <h2>Kako komunicirate sa drugima na srpskom?</h2>
+                                            <md-divider></md-divider>
+
+                                            <md-radio-group ng-model="izabranaKomunikacija" ng-change="changeValueUpitnik2(3, izabranaKomunikacija)">
+                                                <div ng-repeat='komunikacija in kakoKomunicirateSrpski' class="row">
+                                                    <div flex layout='row' layout-padding layout-align="start center">
+                                                        <md-radio-button flex ng-value="komunikacija" class="md-primary">
+
+                                                            {{komunikacija.odgovor}}
+
+                                                        </md-radio-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-radio-group>
+
+                                            <md-divider></md-divider>
+                                            <div class="summary" flex layout="row" layout-align="space-between center">
+                                                <div flex-initial>
+                                                    <span class="title">Broj bodova</span>: <span class="md-checked">{{poznavanjeJezika.zbirBodova}}</span>
+                                                </div>
+
+                                            </div>
+                                            <md-dialog-actions layout="row">
+                                                <md-button ng-click="backTab(3)" class="md-warn">
+                                                    Nazad
+                                                </md-button>
+                                                <md-button ng-click="nextTab(3)" type='submit' class="md-primary">
+                                                    Dalje
+                                                </md-button>
+                                            </md-dialog-actions>
+                                        </md-content>
+                                    </md-tab>
+                                    <md-tab label="Kako se izražavate na srpskom?" md-active='tabs[3]' ng-disabled='!tabs[3]'>
+                                        <md-content class="md-padding">
+                                            <h2>Kako se izražavate na srpskom?</h2>
+                                            <md-divider></md-divider>
+
+                                            <md-radio-group ng-model="izabranoIzrazavanje" ng-change="changeValueUpitnik2(4, izabranoIzrazavanje)">
+                                                <div ng-repeat='izrazavanje in kakoIzrazavateSrpski' class="row">
+                                                    <div flex layout='row' layout-padding layout-align="start center">
+                                                        <md-radio-button flex ng-value="izrazavanje" class="md-primary">
+
+                                                            {{izrazavanje.odgovor}}
+
+                                                        </md-radio-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-radio-group>
+
+                                            <md-divider></md-divider>
+                                            <div class="summary" flex layout="row" layout-align="space-between center">
+                                                <div flex-initial>
+                                                    <span class="title">Broj bodova</span>: <span class="md-checked">{{poznavanjeJezika.zbirBodova}}</span>
+                                                </div>
+
+                                            </div>
+                                            <md-dialog-actions layout="row">
+                                                <md-button ng-click="backTab(4)" class="md-warn">
+                                                    Nazad
+                                                </md-button>
+                                                <md-button ng-click="nextTab(4)" type='submit' class="md-primary">
+                                                    Dalje
+                                                </md-button>
+                                            </md-dialog-actions>
+                                        </md-content>
+                                    </md-tab>
+
+
+                                    <md-tab label="Kako pišete na srpskom?" md-active='tabs[4]' ng-disabled='!tabs[4]'>
+                                        <md-content class="md-padding">
+                                            <h2>Kako pišete na srpskom?</h2>
+                                            <md-divider></md-divider>
+
+                                            <md-radio-group ng-model="izabranoPisanje" ng-change="changeValueUpitnik2(5, izabranoPisanje)">
+                                                <div ng-repeat='pisanje in kakoPiseteSrpski' class="row">
+                                                    <div flex layout='row' layout-padding layout-align="start center">
+                                                        <md-radio-button flex ng-value="pisanje" class="md-primary">
+
+                                                            {{pisanje.odgovor}}
+
+                                                        </md-radio-button>
+
+                                                    </div>
+                                                </div>
+                                            </md-radio-group>
+
+                                            <md-divider></md-divider>
+                                            <div class="summary" flex layout="row" layout-align="space-between center">
+                                                <div flex-initial>
+                                                    <span class="title">Broj bodova</span>: <span class="md-checked">{{poznavanjeJezika.zbirBodova}}</span>
+                                                </div>
+
+                                            </div>
+                                            <md-dialog-actions layout="row">
+                                                <md-button ng-click="backTab(5)" class="md-warn">
+                                                    Nazad
+                                                </md-button>
+                                                <md-button ng-click="submitRegistrationUpitnik3($event,'submit', '/register/poslednja.html')" type='submit' class="md-primary">
+                                                    Dalje
+                                                </md-button>
+                                            </md-dialog-actions>
+                                        </md-content>
+                                    </md-tab>
+                                </md-tabs>
+
+                            </div>
+                            <div style="width: 400px; height: 400px; margin-top: auto; margin-bottom: auto; margin-right: auto; margin-left: auto;">
+                                <md-card>
+                                    <md-card-content>
+                                        <h1>Beograd</h1>
+                                        <h5>Izabrani kurs</h5>
+                                        <md-divider></md-divider>
+                                        Kalkulacija i stavke
+                                        <md-divider></md-divider>
+                                        Konackacifra
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </md-dialog-content>
+        </form>
+    </md-dialog>
+</div>

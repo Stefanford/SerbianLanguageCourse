@@ -1,0 +1,98 @@
+<div layout-gt-sm="column">
+                                                <md-input-container flex-gt-sm>
+                                                    <label>{{pitanja.licniPodaci.ime}}</label>
+                                                                <input ng-model="licniPodaci.ime">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>{{pitanja.licniPodaci.prezime}}</label>
+                                                                <input ng-model="licniPodaci.prezime">
+                                                            </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="column">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.pol[0]}}</label>
+                                                        <md-select ng-model="licniPodaci.izabranPol" ng-change="changeValuePol(izabranPol)">
+                                                            <md-option ng-value='pitanja.licniPodaci.pol[1]'>
+                                                                {{pitanja.licniPodaci.pol[1]}}
+                                                            </md-option>
+                                                            <md-option ng-value='pitanja.licniPodaci.pol[2]'>
+                                                                {{pitanja.licniPodaci.pol[2]}}
+                                                            </md-option>
+                                                        </md-select>
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.datumRodjenja}}</label>
+                                                        <md-datepicker ng-model="licniPodaci.datumRodjenja"></md-datepicker>
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.zanimanje}}</label>
+                                                        <input ng-model="licniPodaci.zanimanje">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="row">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.ulica}}</label>
+                                                        <input ng-model="licniPodaci.ulica">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="row">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.broj}}</label>
+                                                        <input ng-model="licniPodaci.broj">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="column">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.grad}}</label>
+                                                        <input ng-model="licniPodaci.grad">
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.drzava}}</label>
+                                                        <input ng-model="licniPodaci.drzava">
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.zemlja}}</label>
+                                                        <input ng-model="licniPodaci.zamlja">
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.drzavljanstvo}}</label>
+                                                        <input ng-model="drzavljanstvo">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="column">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.email1}}</label>
+                                                        <input ng-model="licniPodaci.email1" type="email">
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.email2}}</label>
+                                                        <input ng-model="licniPodaci.email2" type="email">
+                                                    </md-input-container>
+
+                                                </div>
+                                                <div layout-gt-sm="column">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.mobilniTelefon}}</label>
+                                                        <input ng-model="licniPodaci.mobilniTelefon">
+                                                    </md-input-container>
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.skype}}</label>
+                                                        <input ng-model="licniPodaci.skype">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="column">
+                                                    <md-input-container flex-gt-sm>
+                                                        <label>{{pitanja.licniPodaci.kakoSteSaznaliZaNas}}</label>
+                                                        <input ng-model="licniPodaci.reference">
+                                                    </md-input-container>
+                                                </div>
+                                                <div layout-gt-sm="column">
+
+                                                    <label>{{pitanja.licniPodaci.komentar}}</label>
+                                                    <form>
+                                                        <textarea ng-model="licniPodaci.komentar" rows="4" cols="50" name="comment" form="usrform" placeholder="Ovde upišite vaš komentar..." type='su'></textarea>
+                                                    </form>
+
+                                                </div>
+                                                <br>
+                                                <br>

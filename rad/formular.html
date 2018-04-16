@@ -1,0 +1,617 @@
+<div layout-fill>
+    <md-dialog style="background-color: 	#DDDDDD; max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;" aria-label="REGISTRACIJA">
+        <form ng-cloak name="myform">
+            <md-toolbar style="background-image: url('http://www.srpskijezik.edu.rs/img/bg-header.png');">
+                <div class="md-toolbar-tools">
+                    <h2><img src="http://www.srpskijezik.edu.rs/img/logo.png" alt="Logo">Radionica za srpski jezik i kulturu
+                        <md-button aria-label="Latinica" title='Latinica' ng-click="searchTracks('lat')" class="button-srb-lat"></md-button>
+                        <md-button aria-label="Latinica" title='Ћирилица' ng-click="searchTracks('cir')" class="button-srb-cir"></md-button>
+                        <md-button aria-label="Latinica" title='English' ng-click="searchTracks('eng')" class="button-eng"></md-button>
+                        <md-button aria-label="Latinica" title='Français' ng-click="searchTracks('fra')" class="button-fra"></md-button>
+                        <md-button aria-label="Latinica" title='Polski' ng-click="searchTracks('pol')" class="button-pol"></md-button>
+                        <md-button aria-label="Latinica" title='Español' ng-click="searchTracks('esp')" class="button-spa"></md-button>
+                        <md-button aria-label="Latinica" title='Pусский' ng-click="searchTracks('rus')" class="button-rus"></md-button>
+                        <md-button aria-label="Latinica" title='Deutsch' ng-click="searchTracks('nem')" class="button-nem"></md-button>
+                        <md-button aria-label="Latinica" title='中国' ng-click="searchTracks('kin')" class="button-kin"></md-button>
+                        <md-button aria-label="Latinica" title='Italiano' ng-click="searchTracks('ita')" class="button-ita"></md-button>
+                        <md-button aria-label="Latinica" title='Türk' ng-click="searchTracks('tur')" class="button-tur"></md-button>
+                    </h2>
+                </div>
+            </md-toolbar>
+            <md-dialog-content>
+                <md-card>
+                    <md-card-content style="background-color: #FAFAFA;">
+                        <div layout-gt-sm="row">
+                            <div layout-gt-sm="row" layout-fill style="width: 70%; height: 100%;">
+                                <md-tabs flex="100%" md-dynamic-height md-border-bottom md-selected="myTabIndex" style="color: #fff !important; background-image: url('/css/export.png');">
+                                    <form name="myForm" novalidate ng-submit="submitForm()">
+                                        <md-tab md-active='tabs[0]' ng-disabled='!tabs[0]'>
+                                            <md-tab-label style="color: #fff !important;">{{pitanja.kartice.mesto}}</md-tab-label>
+                                            <md-tab-body>
+                                                <md-content class="md-padding">
+                                                    <h2>{{pitanja.pitanja.mesto[0]}}</h2>
+                                                    <md-divider></md-divider>
+                                                    <div layout-gt-sm="column">
+                                                        <md-card>
+                                                            <md-card-content>
+                                                                <md-input-container style="width: 100%;">
+                                                                    <label>{{pitanja.pitanja.mesto[1]}}</label>
+                                                                    <md-select name="mesto" ng-model="izabranoMesto" ng-change="changeValueFormular(0, izabranoMesto)" required="">
+                                                                        <md-option ng-repeat="mesto in mesta" ng-value="mesto">
+                                                                            {{mesto}}
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                    <div class="errors" ng-if="evalMess" ng-messages="myform.mesto.$error">
+                                                                        <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                    </div>
+                                                                </md-input-container>
+                                                            </md-card-content>
+                                                        </md-card>
+                                                        <md-card>
+                                                            <md-card-content>
+                                                                <md-input-container style="width: 100%;">
+                                                                    <label>{{pitanja.samoocenjivanje}}</label>
+                                                                    <md-select name="znanje" ng-model="izabranoZnanje" ng-change="changeValueFormular(9, izabranoZnanje)" required="">
+                                                                        <md-option ng-repeat="znanje in znanjeSrspskog" ng-value="znanje">
+                                                                            {{znanje}}
+                                                                        </md-option>
+                                                                    </md-select>
+                                                                    <div class="errors" ng-if="evalMess" ng-messages="myform.znanje.$error">
+                                                                        <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                    </div>
+                                                                </md-input-container>
+                                                            </md-card-content>
+                                                        </md-card>
+                                                    </div>
+                                                    <md-divider></md-divider>
+                                                    <md-dialog-actions layout="row">
+                                                        <md-button ng-click="submitRegistrationUpitnik3($event,'back', '/register/upitnik2.html')" class="back-button">
+                                                            {{dugmeNazad}}
+                                                        </md-button>
+                                                        <md-button ng-click="setpar(1);" type="submit" class="forward-button">
+                                                            {{dugmeNapred}}
+                                                        </md-button>
+                                                    </md-dialog-actions>
+                                                </md-content>
+                                            </md-tab-body>
+                                        </md-tab>
+                                    </form>
+                                    <md-tab md-active='tabs[1]' ng-disabled='!tabs[1]'>
+                                        <md-tab-label style="color: #fff !important;">{{pitanja.kartice.kurs}}</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <h2>{{pitanja.pitanja.izborKursa[0]}}</h2>
+                                                <md-divider></md-divider>
+                                                <div layout-gt-sm="column">
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <md-input-container style="width: 100%;">
+                                                                <label>{{pitanja.pitanja.izborKursa[1]}}</label>
+                                                                <md-select name="kurs" ng-model="izabranKurs" ng-change="changeValueFormular(1, izabranKurs)" required="">
+                                                                    <md-select-header>
+                                                                        <span><strong>&nbsp;&nbsp;Iskustvo i život:</strong></span>
+                                                                    </md-select-header>
+                                                                    <md-option ng-if="kurs.grupa === 'Iskustvo i život'" ng-repeat="kurs in kursevi" ng-value="kurs">
+                                                                        {{kurs.imeKursa}}
+                                                                    </md-option>
+                                                                    <md-select-header>
+                                                                        <span><strong>&nbsp;&nbsp;Obrazovanje i ispiti:</strong></span>
+                                                                    </md-select-header>
+                                                                    <md-option ng-if="kurs.grupa === 'Obrazovanje i ispiti'" ng-repeat="kurs in kursevi" ng-value="kurs">
+                                                                        {{kurs.imeKursa}}
+                                                                    </md-option>
+                                                                </md-select>
+                                                                <div class="errors" ng-if="evalMess" ng-messages="myform.kurs.$error">
+                                                                    <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <md-input-container style="width: 100%;">
+                                                                <label>{{pitanja.pitanja.raspored[3]}}</label>
+                                                                <md-select name="pocetak" ng-model="izabraniDatum" ng-change="changeValueFormular(14, izabraniDatum)" required="">
+                                                                    <md-option ng-repeat="datumPocetkaKursa in datumOdrzavanja" ng-value="datumPocetkaKursa">
+                                                                        {{datumPocetkaKursa}}
+                                                                    </md-option>
+                                                                </md-select>
+                                                                <div class="errors" ng-if="evalMess" ng-messages="myform.pocetak.$error">
+                                                                    <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <md-input-container style="width: 100%;">
+                                                                <label>{{pitanja.pitanja.izborKursa[2]}}</label>
+                                                                <md-select name="brojCasova" ng-model="izabranBroj" ng-change="changeValueFormular(2, izabranBroj)" ng-disabled="onOffCasovaNedeljno" required="">
+                                                                    <md-option ng-repeat="casovaNedeljno in brojCasovaNedeljno" ng-value="casovaNedeljno">
+                                                                        {{casovaNedeljno.broj}}
+                                                                    </md-option>
+                                                                </md-select>
+                                                                <div class="errors" ng-if="evalMess" ng-messages="myform.brojCasova.$error">
+                                                                    <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <md-input-container style="width: 100%;">
+                                                                <label>{{pitanja.pitanja.izborKursa[3]}}</label>
+                                                                <md-select name="trajanje" ng-model="trajanje" ng-change="changeValueFormular(3, trajanje)" required="">
+                                                                    <md-option ng-repeat="duzinaTrajanja in brojNedelja" ng-value="duzinaTrajanja">
+                                                                        {{duzinaTrajanja}}
+                                                                    </md-option>
+                                                                </md-select>
+                                                                <div class="errors" ng-if="evalMess" ng-messages="myform.trajanje.$error">
+                                                                    <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                </div>
+                                                            </md-input-container>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <md-dialog-actions layout="row">
+                                                    <md-button ng-click="backTab(0); setpar(0)" class="back-button">
+                                                        {{dugmeNazad}}
+                                                    </md-button>
+                                                    <md-button ng-click="nextTab(2); setpar(2);" type='submit' class="forward-button">
+                                                        {{dugmeNapred}}
+                                                    </md-button>
+                                                </md-dialog-actions>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab md-active='tabs[2]' ng-disabled='!tabs[2]'>
+                                        <md-tab-label style="color: #fff !important;">{{pitanja.kartice.raspored}}</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <h2>{{pitanja.pitanja.raspored[0]}}</h2>
+                                                <md-divider></md-divider>
+                                                <div layout-gt-sm="column">
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <label>{{pitanja.pitanja.raspored[1]}}</label>
+                                                            <div layout="row">
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedPonedeljak" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedUtorak" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedSreda" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedCetvrtak" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedPetak" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedSubota" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                                <span ng-dropdown-multiselect="" options="raspored" selected-model="pitanje1.rasporedTerminiKojiOdgovarajuPolazniku.rasporedNedelja" checkboxes="true" extra-settings="settings" style="padding-right:15px;"></span>
+                                                            </div>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <md-dialog-actions layout="row">
+                                                    <md-button ng-click="backTab(1); setpar(1);" class="back-button">
+                                                        {{dugmeNazad}}
+                                                    </md-button>
+                                                    <md-button ng-click="nextTab(3); setpar(3);" type='submit' class="forward-button">
+                                                        {{dugmeNapred}}
+                                                    </md-button>
+                                                </md-dialog-actions>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab md-active='tabs[3]' ng-disabled='!tabs[3]'>
+                                        <md-tab-label style="color: #fff !important;">{{pitanja.kartice.smestaj}}</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <h2>{{pitanja.pitanja.smestaj[0]}}</h2>
+                                                <md-divider></md-divider>
+                                                <div layout-gt-sm="column">
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <div flex-gt="50">
+                                                                <md-checkbox ng-model="trebaSmestaj" ng-true-value="'da'" ng-false-value="'ne'" ng-change="changeValueFormular(10, trebaSmestaj)" aria-label="Da li vam je potreban smeštaj?">
+                                                                    {{pitanja.pitanja.smestaj[3]}}
+                                                                </md-checkbox>
+                                                            </div>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <!--<md-card>
+                                                        <md-card-content>
+                                                            <md-input-container style="width: 100%;">
+                                                                <label>{{pitanja.pitanja.smestaj[1]}}</label>
+                                                                <md-select ng-model="izabranSmestaj" ng-change="changeValueFormular(6, izabranSmestaj)" ng-disabled="onOffSmestaj">
+                                                                    <md-option ng-repeat="smestaj in smestaji" ng-value="smestaj">
+                                                                        {{smestaj.vrstaSmestaja}}
+                                                                    </md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                        </md-card-content>
+                                                    </md-card>-->
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <div layout-gt-sm="row"><span align="left">
+                                                                <h4>{{pitanja.pitanja.smestaj[2]}}</h4>
+                                                                <md-datepicker name="datum" ng-model="izabranaDuzinaBoravka1"  ng-change="changeValueFormular(7.1, izabranaDuzinaBoravka1)" ng-disabled="onOffSmestaj" md-min-date="ctrl.minDate1" ng-value="izabranaDuzinaBoravka1" md-placeholder="{{pitanja.pitanja.smestaj[5]}}" required></md-datepicker> 
+                                                                <div style="color: firebrick; font-size: 80%" ng-if="evalMess === true && onOffSmestaj===false">Morate popuniti ovo polje</div></span><span align="right">
+                                                                <h4>{{pitanja.pitanja.smestaj[4]}}</h4>
+                                                                <md-datepicker name="datum" ng-model="izabranaDuzinaBoravka2"  ng-change="changeValueFormular(7.2, izabranaDuzinaBoravka2)" ng-disabled="onOffSmestaj" md-min-date="ctrl.minDate2" ng-value="izabranaDuzinaBoravka2" md-placeholder="{{pitanja.pitanja.smestaj[6]}}" required></md-datepicker>
+                                                                        <div style="color: firebrick; font-size: 80%" ng-if="evalMess === true && onOffSmestaj===false">Morate popuniti ovo polje</div>
+                                                                    </span>
+                                                            </div>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card>
+                                                        <md-card-content>
+                                                            <div flex-gt="50">
+                                                                <md-checkbox ng-model="transferAerodrom" ng-true-value="'da'" ng-false-value="'ne'" ng-change="changeValueFormular(8, transferAerodrom)" aria-label="Transfer sa aerodroma" ng-disabled="onOffTransfer">
+                                                                    {{pitanja.pitanja.transferAerodrom}}
+                                                                </md-checkbox>
+                                                            </div>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <md-dialog-actions layout="row">
+                                                    <md-button ng-click="backTab(2); setpar(2);" class="back-button">
+                                                        {{dugmeNazad}}
+                                                    </md-button>
+                                                    <md-button ng-click="nextTab(4); setpar(4);" type='submit' class="forward-button">
+                                                        {{dugmeNapred}}
+                                                    </md-button>
+                                                </md-dialog-actions>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab md-active='tabs[4]' ng-disabled='!tabs[4]'>
+                                        <md-tab-label style="color: #fff !important;">{{pitanja.licniPodaci.licniPodaci}}</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <a style="font-size: 180%;">{{pitanja.licniPodaci.licniPodaci}}</a>
+                                                <md-divider></md-divider>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 150%; margin: 10px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <Strong><a style="font-size: 180%;">Kurs</a></Strong>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card style="height: 80%; width: 45%; margin: 10px 2px 2px 2px;">
+                                                        <md-card-content align="right">
+                                                            <strong><a style="font-size: 180%;">Cena</a></strong>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 150%;  background-color: #DDDDDD; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <a style="font-size: 120%;">
+                                                                {{pitanje1.vrstaKursa}},{{pitanje1.grad}},{{pitanje1.brojCasovaNedeljno}}, {{pitanje1.duzinaTrajanjaKursa}}</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card style="height: 80%; width: 45%; background-color: #DDDDDD; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content align="right">
+                                                            <a style="font-size: 120%;">{{pitanje1.cenaKursa}}€</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 150%; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <a style="font-size: 120%;">{{pitanja.kalkulator.popust}}</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card style="height: 80%; color: #C21310; width: 45%; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content align="right">
+                                                            <a style="font-size: 120%;">{{popust}}€</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 150%; margin: 18px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <Strong><a style="font-size: 180%;">Dodatno</a></Strong>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card style="height: 80%; width: 45%; margin: 18px 2px 2px 2px;">
+                                                        <md-card-content align="right">
+                                                            <strong><a style="font-size: 180%;">Cena</a></strong>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 150%;  background-color: #DDDDDD; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <a style=" font-size: 120%;">{{pitanja.kalkulator.cenaDodatnogSadrzaja}}</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                    <md-card style="height: 80%; width: 45%; background-color: #DDDDDD; margin: 2px 2px 2px 2px;">
+                                                        <md-card-content align="right">
+                                                            <a style="font-size: 120%;">{{pitanje1.transverAerodrom}}€</a>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 195%; color: #363634; background-color: 	#363634; margin: 30px 2px 2px 2px;">
+                                                        <md-card-content style="font-size: 100%;border: 2px dotted black; background-color: darkgrey">
+                                                            Napomena: Skola nece raditi tad i tad , aovo je vazno a ono nije i td.
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                    <md-card style="height: 80%; width: 195%; color:     #FEFCFF; background-color: 	#363634; margin: 30px 2px 2px 2px;">
+                                                        <md-card-content>
+                                                            <b style="float: left; font-size: 200%;">Ukupno</b>
+                                                            <b style="float: right; font-size: 200%;">{{pitanje1.cenaKursa + pitanje1.transverAerodrom-popust}}€</b>
+                                                        </md-card-content>
+                                                    </md-card>
+                                                </div>
+                                                <div layout="row">
+                                                </div>
+                                                <md-divider></md-divider>
+                                                <md-dialog-actions layout="row">
+                                                    <md-button ng-click="backTab(3); setpar(3);" class="back-button">
+                                                        {{dugmeNazad}}
+                                                    </md-button>
+                                                    <md-button ng-click="nextTab(6); setpar(6);" type='submit' class="forward-button">
+                                                        Rezervisi
+                                                    </md-button>
+                                                    <md-button ng-click="nextTab(5); setpar(5);" type='submit' class="forward-button">
+                                                        Kontaktiraj nas
+                                                    </md-button>
+                                                </md-dialog-actions>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab md-active='tabs[5]' ng-disabled='!tabs[5]'>
+                                        <md-tab-label style="color: #fff !important;">Rezervisi</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <md-card>
+                                                    <md-card-content>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <br>
+                                                                <label>Ime</label>
+                                                                <input ng-model="licniPodaci.ime" required="">
+                                                            
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Prezime</label>
+                                                                <input ng-model="licniPodaci.prezime" required>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Pol</label>
+                                                                <md-select ng-model="licniPodaci.pol">
+                                                                    <md-option value='Muški'>
+                                                                        Muški
+                                                                    </md-option>
+                                                                    <md-option value='Ženski'>
+                                                                        Ženski
+                                                                    </md-option>
+                                                                </md-select>
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Datum rođenja</label>
+                                                                <md-datepicker ng-model="licniPodaci.datumRodjenja" md-current-view="year"></md-datepicker>
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Zanimanje</label>
+                                                                <input ng-model="licniPodaci.zanimanje">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Ulica</label>
+                                                                <input ng-model="licniPodaci.ulica">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Broj</label>
+                                                                <input ng-model="licniPodaci.broj">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Grad</label>
+                                                                <input ng-model="licniPodaci.grad">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Država</label>
+                                                                <input ng-model="licniPodaci.drzava">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Zemlja</label>
+                                                                <input ng-model="licniPodaci.zemlja">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Državljanstvo</label>
+                                                                <input ng-model="licniPodaci.drzavljanstvo">
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Email1</label>
+                                                                <input ng-model="licniPodaci.email1" type="email" required>
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Email2</label>
+                                                                <input ng-model="licniPodaci.email2" type="email" required>
+                                                            </md-input-container>
+
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Mobilni telefon</label>
+                                                                <input ng-model="licniPodaci.mobilniTelefon">
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Skype</label>
+                                                                <input ng-model="licniPodaci.skype">
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Kako ste saznali za nas</label>
+                                                                <input ng-model="licniPodaci.referenca">
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <label>Komentar:</label>
+                                                            <form>
+                                                                <textarea ng-model="licniPodaci.komentar" rows="4" cols="50" name="comment" form="usrform" placeholder="Ovde upišite vaš komentar..." type='su'></textarea>
+                                                            </form>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <md-divider></md-divider>
+                                                        <md-dialog-actions layout="row">
+                                                            <md-button ng-click="backTab(4); setpar(4);" class="back-button">
+                                                                {{dugmeNazad}}
+                                                            </md-button>
+                                                            <md-button ng-click="submitRegistrationUpitnik1($event,'submit', '/register/upitnik2.html')" class="md-primary">
+                                                                Dalje
+                                                            </md-button>
+                                                        </md-dialog-actions>
+                                                    </md-card-content>
+                                                </md-card>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                    <md-tab md-active='tabs[6]' ng-disabled='!tabs[6]'>
+                                        <md-tab-label style="color: #fff !important;">Kontaktiraj nas</md-tab-label>
+                                        <md-tab-body>
+                                            <md-content class="md-padding">
+                                                <md-card>
+                                                    <md-card-content>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <br>
+                                                                <label>Ime i prezime</label>
+                                                                <input name="ime" ng-model="licniPodaci.ime" required>
+                                                                 <div class="errors" ng-if="evalMess" ng-messages="myform.ime.$error">
+                                                                        <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                    </div>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Datum rođenja</label>
+                                                                <md-datepicker ng-model="licniPodaci.datumRodjenja" md-current-view="year" required></md-datepicker>
+                                                            </md-input-container>
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Zemlja</label>
+                                                                <input name="zemlja" ng-model="licniPodaci.zamlja" required>
+                                                                 <div class="errors" ng-if="evalMess" ng-messages="myform.zemlja.$error">
+                                                                        <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                    </div>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Email</label>
+                                                                <input name="name" ng-model="licniPodaci.email1" type="email" required>
+                                                                 <div class="errors" ng-if="evalMess" ng-messages="myformemail.$error">
+                                                                        <div ng-message="required">Morate popuniti ovo polje</div>
+                                                                    </div>
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <md-input-container flex-gt-sm>
+                                                                <label>Mobilni telefon</label>
+                                                                <input ng-model="licniPodaci.mobilniTelefon" ng-required="requiredMob">
+                                                            </md-input-container>
+                                                        </div>
+                                                        <div layout-gt-sm="column">
+                                                            <div>
+                                                                <md-checkbox ng-model="dugmici" ng-true-value="'da'" ng-false-value="'ne'" ng-change="activeButton(0)" aria-label="Transfer sa aerodroma">
+                                                                    Pozovite vi mene - za promenu
+                                                                </md-checkbox>
+                                                            </div>
+                                                            <div layout-gt-sm="row">
+                                                                <md-button ng-class="{'active': isActive[0]}" ng-click="activeButton(1)" type="button" aria-label="viber" class="button-contact">
+                                                                    <md-icon md-svg-src="/css/phone.svg"></md-icon>
+                                                                </md-button>
+                                                                <md-button ng-class="{'active': isActive[1]}" ng-click="activeButton(2)" type="button" aria-label="whatsapp" class="button-contact">
+                                                                    <md-icon type="button" md-svg-src="/css/whatsapp.svg"></md-icon>
+                                                                </md-button>
+                                                                <md-button ng-class="{'active': isActive[2]}" ng-click="activeButton(3)" type="button" aria-label="telegram" class="button-contact">
+                                                                    <md-icon md-svg-src="/css/telegram-icon.svg"></md-icon>
+                                                                </md-button>
+                                                                <md-button ng-class="{'active': isActive[3]}" ng-click="activeButton(4)" type="button" aria-label="skype" class="button-contact">
+                                                                    <md-icon md-svg-src="/css/skype-messenger-icon.svg"></md-icon>
+                                                                </md-button>
+                                                            </div>
+                                                            <div ng-if="textActive === true">Izaberi aplikaciju preko koje vas mozemo kontaktirati - za promenu</div>
+                                                        </div>
+                                                        <md-checkbox ng-model="pitanje1.disklejmer" ng-true-value="'da'" ng-false-value="'ne'" ng-change="activeButton(0)"><span>Slažem se.</span>
+                                                        </md-checkbox>
+                                                        <div align="left">Klikom na "Slažem se", slažete se sa <a onmouseover="this.style.textDecoration='underline'" onmouseout="this.style.textDecoration='none'" style="color: firebrick" ng-click="showActionToast()">
+                                                            Uslovima korišćenja
+                                                            </a>.</div>
+                                                        <br>
+                                                        <br>
+                                                    </md-card-content>
+                                                </md-card>
+                                                <md-divider></md-divider>
+                                                <md-dialog-actions layout="row">
+                                                    <md-button ng-click="backTab(4); setpar(4);" class="back-button">
+                                                        {{dugmeNazad}}
+                                                    </md-button>
+                                                    <md-button ng-click="submitRegistrationUpitnik1($event,'submit', '/register/upitnik2.html')" class="md-primary">
+                                                        Dalje
+                                                    </md-button>
+                                                </md-dialog-actions>
+                                            </md-content>
+                                        </md-tab-body>
+                                    </md-tab>
+                                </md-tabs>
+                            </div>
+                            <div ng-if="tabs[0] === true" style="width: 400px; height: 400px; margin-top: auto; margin-bottom: auto; margin-right: auto; margin-left: auto;">
+                                <md-card>
+                                    <md-card-content>
+                                        <h1>Neki tekst vezan za popunjavanje formulara ili slicno, eventualno reklama ili sta vec....</h1>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                            <div ng-if="tabs[4] === true" style="width: 400px; height: 400px; margin-top: auto; margin-bottom: auto; margin-right: auto; margin-left: auto;">
+                                <md-card>
+                                    <md-card-content>
+                                        <h1>Slika tekst ili slicno.....</h1>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                            <div ng-if="tabs[0] === false && tabs[4] === false" style="width: 400px; height: 400px; margin-top: auto; margin-bottom: auto; margin-right: auto; margin-left: auto;">
+                                <md-card>
+                                    <md-card-content>
+                                        <h1>{{pitanje1.grad}}</h1>
+                                        <h5>
+                                            <p>{{pitanje1.vrstaKursa}}
+                                                <span ng-if="pitanje1.brojCasovaNedeljno !== ''">, {{pitanje1.brojCasovaNedeljno}}</span>
+                                                <span ng-if="pitanje1.duzinaTrajanjaKursa !== ''">, {{pitanje1.duzinaTrajanjaKursa}}</span>
+                                            </p>
+                                        </h5>
+                                        <md-divider></md-divider>
+                                        <h5>
+                                            <p>{{pitanja.kalkulator.cenaKursa}}<span style="float:right;">{{pitanje1.cenaKursa}}€</span></p>
+                                        </h5>
+                                        <h5 style="color: #C21310 ;">
+                                            <p>{{pitanja.kalkulator.popust}}<span style="float:right;">{{popust}}€</span></p>
+                                        </h5>
+                                        <!--<h5>
+                                            <p>{{pitanja.kalkulator.cenaSmestaja}}<span style="float:right;">{{pitanje1.cenaSmestaja}}€</span></p>
+                                        </h5>-->
+                                        <h5>
+                                            <p>{{pitanja.kalkulator.cenaDodatnogSadrzaja}}<span style="float:right;">{{pitanje1.transverAerodrom}}€</span></p>
+                                        </h5>
+                                        <md-divider></md-divider>
+                                        <h4>{{pitanja.kalkulator.ukupnaCena}}<span style="float:right;">{{pitanje1.cenaKursa + pitanje1.transverAerodrom-popust}}€</span></h4>
+                                    </md-card-content>
+                                </md-card>
+                            </div>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </md-dialog-content>
+        </form>
+    </md-dialog>
+</div>

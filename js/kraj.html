@@ -1,0 +1,69 @@
+<div layout-gt="column">
+
+                                            <div layout-gt="column">
+                                                <h2>Kurs:</h2>
+                                                <div style="margin-left: auto; margin-right: auto;">
+                                                    <p ng-click='corectValue(0)' ng-mouseover="show0=true" ng-mouseleave="show0=false">Grad: {{pitanje1.grad}}<span ng-show="show0" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                                                        </a>
+            </span></p>
+                                                    <p ng-click='corectValue(1)' ng-mouseover="show1=true" ng-mouseleave="show1=false">Datum početka kursa: {{pitanje1.datumPocetkaKursa}}<span ng-show="show1" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(1)' ng-mouseover="show8=true" ng-mouseleave="show8=false">Trajanje kursa: {{pitanje1.duzinaTrajanjaKursa}}<span ng-show="show8" class="animate-show">
+                <a ng-click= 'pitanje1.duzinaTrajanjaKursa=0'>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(2)' ng-mouseover="show2=true" ng-mouseleave="show2=false">Raspored po danima: {{pitanje1.rasporedDani}}<span ng-show="show2" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(2)' ng-mouseover="show3=true" ng-mouseleave="show3=false">Raspored satnica: {{pitanje1.rasporedSatnica}}<span ng-show="show3" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(1)' ng-mouseover="show4=true" ng-mouseleave="show4=false">Cena kursa: {{pitanje1.cenaKursa}}€<span ng-show="show4" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(3)' ng-mouseover="show5=true" ng-mouseleave="show5=false">Smeštaj: {{pitanje1.smestaj}}<span ng-show="show5" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(3)' ng-mouseover="show6=true" ng-mouseleave="show6=false">Dužina boravka: {{pitanje1.duzinaBoravka}} <span ng-if="pitanje1.dizinaboravka === 2 || pitanje1.dizinaboravka === 3 || pitanje1.dizinaboravka === 4">nedelje</span><span ng-if="pitanje1.dizinaboravka !== 2 && pitanje1.dizinaboravka !== 3 && pitanje1.dizinaboravka !== 4">nedelja</span><span ng-show="show6" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <p ng-click='corectValue(3)' ng-mouseover="show7=true" ng-mouseleave="show7=false">Cena smeštaja: {{pitanje1.cenaSmestaja}}€<span ng-show="show7" class="animate-show">
+                <a>
+                    <img src="https://cdn2.iconfinder.com/data/icons/freecns-cumulus/16/519584-081_Pen-16.png" alt="">
+                </a>
+            </span></p>
+                                                    <li>Ukupna cena: {{pitanje1.cenaKursa + pitanje1.cenaSmestaja + pitanje1.transferAerodrom}}€</li>
+                                                </div>
+
+                                            </div>
+                                            <div layout-gt-sm="column">
+                                                <h2>Jezički nivo, samoocenjivanje:</h2>
+                                                <ol>
+                                                    <li>Kako čujete srpski: {{poznavanjeJezika.slusanje.odgovor}} {{poznavanjeJezika.slusanje.bodova}} bodova</li>
+                                                    <li>Kako čitate na srpskom: {{poznavanjeJezika.citanje.odgovor}} {{poznavanjeJezika.citanje.bodova}} bodova</li>
+                                                    <li>Kako komunicirate sa drugima na srpskom: {{poznavanjeJezika.komuniciranje.odgovor}} {{poznavanjeJezika.komuniciranje.bodova}} bodova</li>
+                                                    <li>Kako se izražavate na srpskom: {{poznavanjeJezika.izrazavanje.odgovor}} {{poznavanjeJezika.izrazavanje.bodova}} bodova</li>
+                                                    <li>Kako pišete srpski: {{poznavanjeJezika.pisanje.odgovor}} {{poznavanjeJezika.pisanje.bodova}} bodova</li>
+                                                </ol>
+                                                <p>Ukupno bodova: {{poznavanjeJezika.zbirBodova}}</p>
+                                                <md-button ng-click="submitRegistrationPoslednja($event,'upitnik3', '/register/upitnik3.html')" class="md-primary">
+                                                    Izmena jezičkog nivoa
+                                                </md-button>
+                                            </div>
+                                        </div>
