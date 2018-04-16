@@ -6,6 +6,7 @@ This repository contains demo web app for Serbian Language school
 Building
 =====================
     npm install .
+    npm install --save -g gulp
     gulp default
     
 Author
