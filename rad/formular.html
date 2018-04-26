@@ -235,7 +235,7 @@
                                                         <md-card-content>
                                                             <div layout-gt-sm="row"><span align="left">
                                                                 <h4>{{pitanja.pitanja.smestaj[2]}}</h4>
-                                                                <md-datepicker name="datum" ng-model="izabranaDuzinaBoravka1"  ng-change="changeValueFormular(7.1, izabranaDuzinaBoravka1)" ng-disabled="onOffSmestaj" md-min-date="ctrl.minDate1" ng-value="izabranaDuzinaBoravka1" md-placeholder="{{pitanja.pitanja.smestaj[5]}}" required></md-datepicker> 
+                                                                <md-datepicker name="datum" ng-model="izabranaDuzinaBoravka1"  ng-change="changeValueFormular(7.1, izabranaDuzinaBoravka1)" ng-disabled="onOffSmestaj" md-min-date="ctrl.minDate1" ng-value="izabranaDuzinaBoravka1" md-placeholder="{{pitanja.pitanja.smestaj[5]}}" required></md-datepicker>
                                                                 <div style="color: firebrick; font-size: 80%" ng-if="evalMess === true && onOffSmestaj===false">Morate popuniti ovo polje</div></span><span align="right">
                                                                 <h4>{{pitanja.pitanja.smestaj[4]}}</h4>
                                                                 <md-datepicker name="datum" ng-model="izabranaDuzinaBoravka2"  ng-change="changeValueFormular(7.2, izabranaDuzinaBoravka2)" ng-disabled="onOffSmestaj" md-min-date="ctrl.minDate2" ng-value="izabranaDuzinaBoravka2" md-placeholder="{{pitanja.pitanja.smestaj[6]}}" required></md-datepicker>
@@ -376,7 +376,7 @@
                                                                 <br>
                                                                 <label>Ime</label>
                                                                 <input ng-model="licniPodaci.ime" required="">
-                                                            
+
                                                             </md-input-container>
                                                             <md-input-container flex-gt-sm>
                                                                 <label>Prezime</label>
@@ -529,16 +529,16 @@
                                                             </div>
                                                             <div layout-gt-sm="row">
                                                                 <md-button ng-class="{'active': isActive[0]}" ng-click="activeButton(1)" type="button" aria-label="viber" class="button-contact">
-                                                                    <md-icon md-svg-src="/css/phone.svg"></md-icon>
+                                                                    <md-icon md-svg-src="css/phone.svg"></md-icon>
                                                                 </md-button>
                                                                 <md-button ng-class="{'active': isActive[1]}" ng-click="activeButton(2)" type="button" aria-label="whatsapp" class="button-contact">
-                                                                    <md-icon type="button" md-svg-src="/css/whatsapp.svg"></md-icon>
+                                                                    <md-icon type="button" md-svg-src="css/whatsapp.svg"></md-icon>
                                                                 </md-button>
                                                                 <md-button ng-class="{'active': isActive[2]}" ng-click="activeButton(3)" type="button" aria-label="telegram" class="button-contact">
-                                                                    <md-icon md-svg-src="/css/telegram-icon.svg"></md-icon>
+                                                                    <md-icon md-svg-src="css/telegram-icon.svg"></md-icon>
                                                                 </md-button>
                                                                 <md-button ng-class="{'active': isActive[3]}" ng-click="activeButton(4)" type="button" aria-label="skype" class="button-contact">
-                                                                    <md-icon md-svg-src="/css/skype-messenger-icon.svg"></md-icon>
+                                                                    <md-icon md-svg-src="css/skype-messenger-icon.svg"></md-icon>
                                                                 </md-button>
                                                             </div>
                                                             <div ng-if="textActive === true">Izaberi aplikaciju preko koje vas mozemo kontaktirati - za promenu</div>
